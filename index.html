@@ -174,6 +174,23 @@
     letter-spacing: -.02em; font-style: normal;
   }
   .script-sub { font-family: var(--font-script); font-weight: 700; letter-spacing: .04em; }
+  /* 中文名：跟在英文名右侧的小号署名，竖向细线分隔 */
+  .cn-name {
+    display: inline-block; margin-left: .26em; padding-left: .3em;
+    vertical-align: .16em;
+    border-left: 1px solid rgba(200,158,166,.62);
+    font-family: var(--font-heading); font-weight: 600;
+    font-size: .29em; letter-spacing: .1em; line-height: 1;
+    color: var(--ink-soft); white-space: nowrap;
+  }
+  @media (max-width: 640px) {
+    .headline { font-size: clamp(34px, 10vw, 52px) !important; }
+    /* 窄屏：中文名换到英文名下方，避免整行过宽 */
+    .cn-name {
+      display: block; margin: .3em 0 0 .04em; padding-left: 0;
+      border-left: none; font-size: .5em; letter-spacing: .34em;
+    }
+  }
   .en-label {
     font-family: var(--font-serif); font-style: italic;
     font-weight: 500; letter-spacing: .07em;
@@ -627,7 +644,7 @@
   <section id="hero" class="relative w-full mx-auto max-w-[1560px] min-h-screen flex flex-col md:flex-row items-center justify-center overflow-hidden px-5 sm:px-8 md:px-10">
 
     <!-- left: name + intro -->
-    <div class="w-full md:w-[46%] pt-28 md:pt-16 pb-10 md:pb-16 relative z-10 flex justify-center">
+    <div class="w-full md:w-[46%] pt-28 md:pt-16 pb-10 md:pb-16 relative z-10 flex justify-center min-w-0">
       <div class="max-w-2xl text-center">
         <!-- 首页标语：大号中文，逐字打字机出现 -->
         <!-- 首页标语：SVG 逐字描边勾线 → 填充擦除（页面加载即触发，单行自适应） -->
@@ -635,7 +652,7 @@
           <svg id="sloganSvg" role="img" aria-label="在代码里造物，在实践中远航"></svg>
         </div>
         <h1 class="headline" style="font-family: var(--font-display); font-weight: 600; font-size: clamp(52px, 8.6vw, 122px); line-height: 1.05; letter-spacing: -.02em; padding-top: .04em;">
-          <span class="line"><span class="script">OuYuqin<span style="color:var(--coral);">.</span></span></span>
+          <span class="line"><span class="script">OuYuqin<span style="color:var(--coral);">.</span><span class="cn-name">欧聿芩</span></span></span>
           <span class="line" style="font-size: clamp(26px, 3.2vw, 42px); color: var(--ink-soft); letter-spacing:.05em; line-height:1.42;">
             <span class="script-sub">welcome to my <span style="color:var(--coral);">universe</span>&nbsp;🌸</span>
           </span>
@@ -707,7 +724,7 @@
         <li>南京财经大学 <span style="color:var(--coral);">计算机科学与技术</span> 专业本科在读（2024 级）。</li>
         <li>掌握 Python 等编程工具，注重技术实现与项目统筹。</li>
         <li>持有<span style="color:var(--coral);">计算机二级证书</span>与<span style="color:var(--coral);">普通话二级证书</span>，基础扎实、表达清晰。</li>
-        <li>参与智慧旅游项目组，以第二作者身份发表通信方向 <span style="color:var(--coral);">EI 会议论文</span>。</li>
+        <li>参与智慧旅游项目组，相关研究成果发表于 <span style="color:var(--coral);">EI 收录的国际会议</span>。</li>
         <li>获计算机设计大赛校级二等奖、财经类创新创业比赛<span style="color:var(--coral);">国家级二等奖</span>。</li>
         <li>多次获校级学习优秀奖学金，获评优秀共青团员、优秀学生会负责人、优秀大学生。</li>
         <li>希望从事计算机相关实习，在实践中积累工程经验，也欢迎来我的宇宙里逛逛 🌸</li>
@@ -763,18 +780,13 @@
       <div class="tl-item relative">
         <div class="tl-dot">📜</div>
         <div class="reveal card p-7 md:p-8">
-          <div class="tl-cols rev">
-            <div class="tl-img shot"><img src="assets/paper-ei.jpg" alt="论文 EI 检索证明（南京师范大学科技查新站）" loading="lazy" /></div>
-            <div class="tl-txt">
-              <p class="text-black/40 text-sm mb-2">学术成果 · 第二作者</p>
-              <p class="text-xl mb-2" style="font-family: var(--font-heading);">通信方向 EI 会议论文</p>
-              <p class="text-black/55 text-sm leading-relaxed mb-3">以第二作者身份参与通信方向论文研究，论文 <em>Deep Learning-Driven Intelligent THz Communications for 6G Urban Air Mobility: Channel Prediction and URLLC Assurance</em> 被 EI 收录会议 CCAI 2026（2026 6th International Conference on Computer Communication and Artificial Intelligence，pp. 672–677）录用并发表。</p>
-              <div class="flex flex-wrap gap-2">
-                <span class="tag">EI 收录</span>
-                <span class="tag">CCAI 2026</span>
-                <span class="tag">第二作者</span>
-              </div>
-            </div>
+          <p class="text-black/40 text-sm mb-2">学术成果 · EI 收录</p>
+          <p class="text-xl mb-2" style="font-family: var(--font-heading);">通信方向 EI 会议论文</p>
+          <p class="text-black/55 text-sm leading-relaxed mb-3">参与通信方向的学术研究，相关论文被 EI 收录的国际会议 CCAI 2026 录用发表。</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag">EI 收录</span>
+            <span class="tag">CCAI 2026</span>
+            <span class="tag">6G 通信</span>
           </div>
         </div>
       </div>
